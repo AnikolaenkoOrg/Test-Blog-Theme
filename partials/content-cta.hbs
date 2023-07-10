@@ -1,0 +1,25 @@
+{{!-- Content preview --}}
+<div class="post-sneak-peek">
+  {{{html}}}
+</div>
+
+{{!-- Post Access CTA --}}
+<div class="post-access-cta p-lg text-center border-1 {{visibility}}">
+  <h3>{{t "Read the full story"}}</h3>
+  {{#has visibility="members"}}
+    <p class="text-acc-3">
+    {{t "Sign up now to read the full story and get access to all members-only posts."}}
+    </p>  
+  {{/has}}
+  {{#has visibility="paid"}}
+    <p class="text-acc-3">
+      {{t "Sign up now to read the full story and get access to all paid posts."}}
+    </p>
+  {{/has}}
+  <a href="/signup/" class="btn btn--primary m-b"{{#if @custom.use_portal_links}} data-portal="signup"{{/if}}>{{t "Subscribe"}}</a>
+
+  <div class="small">
+    <span>{{t "Already have an account?"}}</span> 
+    <a href="/signin/" class="post-access-alt link-no-style"{{#if @custom.use_portal_links}} data-portal="signin"{{/if}}>{{t "Sign in"}}</a>
+  </div>
+</div>
