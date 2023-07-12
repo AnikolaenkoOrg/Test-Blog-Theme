@@ -1,25 +1,24 @@
-{{!-- Content preview --}}
-<div class="post-sneak-peek">
-  {{{html}}}
-</div>
+{{{html}}}
 
-{{!-- Post Access CTA --}}
-<div class="post-access-cta p-lg text-center border-1 {{visibility}}">
-  <h3>{{t "Read the full story"}}</h3>
-  {{#has visibility="members"}}
-    <p class="text-acc-3">
-    {{t "Sign up now to read the full story and get access to all members-only posts."}}
-    </p>  
-  {{/has}}
-  {{#has visibility="paid"}}
-    <p class="text-acc-3">
-      {{t "Sign up now to read the full story and get access to all paid posts."}}
-    </p>
-  {{/has}}
-  <a href="/signup/" class="btn btn--primary m-b"{{#if @custom.use_portal_links}} data-portal="signup"{{/if}}>{{t "Subscribe"}}</a>
+<div class="gh-cta-gradient"></div>
 
-  <div class="small">
-    <span>{{t "Already have an account?"}}</span> 
-    <a href="/signin/" class="post-access-alt link-no-style"{{#if @custom.use_portal_links}} data-portal="signin"{{/if}}>{{t "Sign in"}}</a>
-  </div>
-</div>
+<section class="gh-cta">
+    {{#has visibility="paid"}}
+        <h4 class="gh-cta-title">This post is for paying subscribers only</h4>
+    {{/has}}
+    {{#has visibility="members"}}
+        <h4 class="gh-cta-title">This post is for subscribers only</h4>
+    {{/has}}
+    {{#has visibility="filter"}}
+        <h4 class="gh-cta-title">This post is for subscribers on the {{tiers}} only</h4>
+    {{/has}}
+
+    <div class="gh-cta-actions">
+        {{#if @member}}
+            <button class="gh-btn gh-primary-btn" href="#/portal/account/plans" data-portal="account/plans">Upgrade now</button>
+        {{else}}
+            <button class="gh-btn gh-primary-btn" href="#/portal/signup" data-portal="signup">Subscribe now</button>
+            <span class="gh-cta-link" href="#/portal/signin" data-portal="signin">Already have an account? Sign in.</span>
+        {{/if}}
+    </div>
+</section>

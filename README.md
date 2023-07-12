@@ -1,12 +1,12 @@
-# Ease
+# Bulletin
 
-A versatile [Ghost](https://github.com/TryGhost/Ghost) theme suitable for documentation. Publish your posts or business information with ease.
+Bulletin is a minimal newsletter theme for [Ghost](https://github.com/TryGhost/Ghost). The theme divides your homepage into two sections. The left-hand section is optimized for capturing new email subscribers with a punchy background color. The right-hand section shows an excerpt from the latest issue you’ve published.
 
-**Demo: https://ease.ghost.io**
+**Demo: https://bulletin.ghost.io**
 
 # Instructions
 
-1. [Download this theme](https://github.com/TryGhost/Ease/archive/main.zip)
+1. [Download this theme](https://github.com/TryGhost/Bulletin/archive/main.zip)
 2. Log into Ghost, and go to the `Design` settings area to upload the zip file
 
 # Development
@@ -23,7 +23,7 @@ yarn dev
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
 
-The `zip` Gulp task packages the theme files into `dist/ease.zip`, which you can then upload to your site.
+The `zip` Gulp task packages the theme files into `dist/bulletin.zip`, which you can then upload to your site.
 
 ```bash
 yarn zip
