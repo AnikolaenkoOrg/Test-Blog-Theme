@@ -1,9 +1,21 @@
-<nav class="pagination flex items-center m-t-lg" role="navigation">
-  {{#if prev}}
-    {{#link href=(page_url prev) class="newer-posts btn btn--dark btn--xs m-r"}}&larr; {{t "Previous"}}{{/link}}
-  {{/if}}
-  <span class="page-number">{{page}}/{{pages}}</span>
-  {{#if next}}
-    {{#link href=(page_url next) class="older-posts btn btn--dark btn--xs m-l"}}{{t "Next"}} &rarr;{{/link}}
-  {{/if}}
+<div class="pagination-container gh-canvas">
+<nav class="pagination">
+
+    <div class="pagination-left">
+        {{#if prev}}
+            <a class="newer-posts" href="{{page_url prev}}">← Previous</a>
+        {{/if}}
+    </div>
+
+    {{#match pages "!=" 1}}
+        <span class="page-number hidden-xs hidden-sm">Page {{page}} of {{pages}}</span>
+    {{/match}}
+
+    <div class="pagination-right">
+        {{#if next}}
+            <a class="older-posts" href="{{page_url next}}">Next →</a>
+        {{/if}}
+    </div>
+
 </nav>
+</div>

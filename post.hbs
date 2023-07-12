@@ -1,48 +1,57 @@
 {{!< default}}
 
-{{#post}}
-
 <main class="site-main">
-    <article class="{{post_class}} single">
 
-        {{#if og_description}}
-            <div class="gh-outer">
-                {{> "player"}}
+    {{#post}}
+
+    <article class="{{post_class}}">
+
+        <header class="gh-article-header gh-canvas">
+            <h1 class="gh-article-title">{{title}}</h1>
+            <div class="post-meta">
+                Last updated on&nbsp;
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date updated_at}}</time>
             </div>
-        {{else}}
-            <header class="post-header gh-canvas">
-                {{> "post-meta"}}
-                <h1 class="post-title">{{title}}</h1>
-                {{> "feature-image"}}
-            </header>
-        {{/if}}
+            {{> "post-image"}}
+        </header>
 
-        <div class="post-content gh-content gh-canvas">
+        <div class="gh-content gh-canvas">
             {{content}}
 <span class="ctx-article-root"><!-- --></span>
         </div>
 
-        <div class="gh-canvas">
-            <div class="author-list">
-                <h3 class="author-list-title">
-                    {{#if og_description}}Hosted by:{{else}}Written by:{{/if}}
-                </h3>
-                {{#foreach authors}}
-                    {{> "author-box"}}
-                {{/foreach}}
+        <div class="pagination-container gh-canvas">
+        <nav class="pagination">
+
+            <div class="pagination-left">
+                {{#prev_post}}
+                    <a class="newer-posts" href="{{url}}">
+                        <span class="pagination-label">Previous</span>
+                        {{title}}
+                    </a>
+                {{/prev_post}}
             </div>
-            {{#if comments}}
-                <section class="gh-comments">
-                    <header class="gh-comments-header">
-                        <h3 class="gh-comments-title author-list-title">Member discussion:</h3>
-                        {{comment_count class="gh-comments-count"}}
-                    </header>
-                    {{comments title="" count=false}}
-                </section>
-            {{/if}}
+
+            <div class="pagination-right">
+                {{#next_post}}
+                    <a class="older-posts" href="{{url}}">
+                        <span class="pagination-label">Next</span>
+                        {{title}}
+                    </a>
+                {{/next_post}}
+            </div>
+
+        </nav>
         </div>
 
-    </article>
-</main>
+        {{#if comments}}
+            <div class="gh-comments gh-canvas">
+                {{comments}}
+            </div>
+        {{/if}}
 
-{{/post}}
+    </article>
+
+    {{/post}}
+
+</main>

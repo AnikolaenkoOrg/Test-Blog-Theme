@@ -1,17 +1,17 @@
-# Wave
+# Ease
 
-Wave is a [Ghost](https://github.com/TryGhost/Ghost) theme dedicated to podcasters. Share your voice and words with your audience.
+A versatile [Ghost](https://github.com/TryGhost/Ghost) theme suitable for documentation. Publish your posts or business information with ease.
 
-**Demo: https://wave.ghost.io**
+**Demo: https://ease.ghost.io**
 
 # Instructions
 
-1. [Download this theme](https://github.com/TryGhost/Wave/archive/main.zip)
+1. [Download this theme](https://github.com/TryGhost/Ease/archive/main.zip)
 2. Log into Ghost, and go to the `Design` settings area to upload the zip file
 
 # Development
 
-Edition styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
+Styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
 
 ```bash
 # Install
@@ -23,7 +23,7 @@ yarn dev
 
 Now you can edit `/assets/css/` files, which will be compiled to `/assets/built/` automatically.
 
-The `zip` Gulp task packages the theme files into `dist/wave.zip`, which you can then upload to your site.
+The `zip` Gulp task packages the theme files into `dist/ease.zip`, which you can then upload to your site.
 
 ```bash
 yarn zip
@@ -33,6 +33,6 @@ yarn zip
 
 This repo is synced automatically with [TryGhost/Themes](https://github.com/TryGhost/Themes) monorepo. If you're looking to contribute or raise an issue, head over to the main repository [TryGhost/Themes](https://github.com/TryGhost/Themes) where our official themes are developed.
 
-## Copyright & License
+# Copyright & License
 
 Copyright (c) 2013-2022 Ghost Foundation - Released under the [MIT license](LICENSE).

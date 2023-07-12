@@ -1,106 +1,41 @@
-$(function () {
-    'use strict';
-    cover();
-    pagination(true);
-    player();
-});
-
-function cover() {
-    'use strict';
-
-    var image = $('.cover-image');
+(function () {
+    var image = $('.jarallax-img');
     if (!image) return;
 
+    var options = {
+        disableParallax: /iPad|iPhone|iPod|Android/,
+        disableVideo: /iPad|iPhone|iPod|Android/,
+        speed: 0.1,
+    };
+
     image.imagesLoaded(function () {
-        $('.site-cover').addClass('initialized');
+        image.parent().jarallax(options).addClass('initialized');
     });
-}
+})();
 
-function player() {
+(function () {
     'use strict';
-    var player = jQuery('.player');
-    var playerAudio = jQuery('.player-audio');
-    var playerProgress = jQuery('.player-progress');
-    var timeCurrent = jQuery('.player-time-current');
-    var timeDuration = jQuery('.player-time-duration');
-    var playButton = jQuery('.button-play');
-    var backwardButton = jQuery('.player-backward');
-    var forwardButton = jQuery('.player-forward');
-    var playerSpeed = 1;
-    var speedButton = jQuery('.player-speed');
-
-    jQuery('.site').on('click', '.js-play', function () {
-        var clicked = jQuery(this);
-
-        if (clicked.hasClass('post-play')) {
-            var episode = clicked.closest('.post');
-            if (player.attr('data-playing') !== episode.attr('data-id')) {
-                playerAudio.attr('src', episode.attr('data-url'));
-                jQuery('.post[data-id="' + player.attr('data-playing') + '"]').find('.post-play').removeClass('playing');
-                player.attr('data-playing', episode.attr('data-id'));
-                player.find('.post-image').attr('src', episode.find('.post-image').attr('src'));
-                player.find('.post-title').text(episode.find('.post-title').text());
-                player.find('.post-meta time').attr('datetime', episode.find('.post-meta-date time').attr('datetime'));
-                player.find('.post-meta time').text(episode.find('.post-meta-date time').text());
-            }
-        }
-
-        if (playerAudio[0].paused) {
-            var playPromise = playerAudio[0].play();
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(function () {
-                        clicked.addClass('playing');
-                        playButton.addClass('playing');
-                        jQuery('.post[data-id="' + player.attr('data-playing') + '"]').find('.post-play').addClass('playing');
-                        jQuery('body').addClass('player-opened');
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
-            }
-        } else {
-            playerAudio[0].pause();
-            clicked.removeClass('playing');
-            playButton.removeClass('playing');
-            jQuery('.post[data-id="' + player.attr('data-playing') + '"]').find('.post-play').removeClass('playing');
-        }
+    $('.featured-posts').owlCarousel({
+        dots: false,
+        margin: 30,
+        nav: true,
+        navText: [
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="18" height="18" fill="currentColor"><path d="M20.547 22.107L14.44 16l6.107-6.12L18.667 8l-8 8 8 8 1.88-1.893z"></path></svg>',
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="18" height="18" fill="currentColor"><path d="M11.453 22.107L17.56 16l-6.107-6.12L13.333 8l8 8-8 8-1.88-1.893z"></path></svg>',
+        ],
+        responsive: {
+            0: {
+                items: 1,
+                slideBy: 1,
+            },
+            768: {
+                items: 3,
+                slideBy: 3,
+            },
+            992: {
+                items: 4,
+                slideBy: 4,
+            },
+        },
     });
-
-    playerAudio.on('timeupdate', function () {
-        const duration = isNaN(playerAudio[0].duration) ? 0 : playerAudio[0].duration;
-        timeDuration.text(
-            new Date(duration * 1000).toISOString().substring(11, 19)
-        );
-        playerAudio[0].addEventListener('timeupdate', function (e) {
-            timeCurrent.text(
-                new Date(e.target.currentTime * 1000)
-                    .toISOString()
-                    .substring(11, 19)
-            );
-            playerProgress.css(
-                'width',
-                (e.target.currentTime / playerAudio[0].duration) * 100 + '%'
-            );
-        });
-    });
-
-    backwardButton.on('click', function () {
-        playerAudio[0].currentTime = playerAudio[0].currentTime - 10;
-    });
-
-    forwardButton.on('click', function () {
-        playerAudio[0].currentTime = playerAudio[0].currentTime + 30;
-    });
-
-    speedButton.on('click', function () {
-        if (playerSpeed < 2) {
-            playerSpeed += 0.5;
-        } else {
-            playerSpeed = 1;
-        }
-
-        playerAudio[0].playbackRate = playerSpeed;
-        speedButton.text(playerSpeed + 'x');
-    });
-}
+})();
