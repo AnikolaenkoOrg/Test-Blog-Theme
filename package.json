@@ -1,180 +1,179 @@
 {
-  "name": "nikko",
-  "description": "Nikko Ghost Theme",
-  "demo": "https://nikko.bironthemes.com",
-  "version": "1.10.0",
-  "author": {
-    "name": "Biron Themes",
-    "email": "bironthemes@gmail.com",
-    "url": "https://bironthemes.com"
-  },
-  "gpm": {
-    "type": "theme",
-    "categories": [
-      "Newletter",
-      "Blog"
-    ]
-  },
-  "keywords": [
-    "ghost",
-    "theme",
-    "ghost-theme"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bironthemes/nikko-ghost.git"
-  },
-  "scripts": {
-    "dev": "gulp",
-    "zip": "gscan . && gulp zip",
-    "test": "gscan ."
-  },
-  "dependencies": {
-    "@babel/core": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
-    "@tryghost/content-api": "^1.11.9",
-    "beeper": "^2.1.0",
-    "browser-sync": "^2.29.1",
-    "cssnano": "^5.1.15",
-    "cssnano-preset-advanced": "^5.3.10",
-    "fitvids": "^2.1.1",
-    "fslightbox": "^3.4.1",
-    "fuse.js": "^6.6.2",
-    "gscan": "^4.36.2",
-    "gulp": "^4.0.2",
-    "gulp-babel": "^8.0.0",
-    "gulp-concat": "^2.6.1",
-    "gulp-postcss": "^9.0.1",
-    "gulp-rename": "^2.0.0",
-    "gulp-uglify": "^3.0.2",
-    "gulp-zip": "^5.1.0",
-    "headroom.js": "^0.12.0",
-    "lazysizes": "^5.3.2",
-    "postcss": "^8.4.22",
-    "postcss-cssential": "^1.1.0",
-    "postcss-import": "^14.1.0",
-    "postcss-mixins": "^9.0.4",
-    "postcss-nested": "^5.0.6",
-    "postcss-preset-env": "^7.8.3",
-    "pump": "^3.0.0",
-    "tiny-slider": "^2.9.4",
-    "tocbot": "^4.21.0"
-  },
-  "config": {
-    "custom": {
-      "secondary_color": {
-        "type": "color",
-        "default": "#e052a5"
-      },
-      "default_color_scheme": {
-        "type": "select",
-        "options": [
-          "System",
-          "Light",
-          "Dark"
-        ],
-        "default": "System"
-      },
-      "typography": {
-        "type": "select",
-        "options": [
-          "Inter",
-          "Cabin",
-          "Lora",
-          "Manrope",
-          "Inconsolata"
-        ],
-        "default": "Inter"
-      },
-      "header_position": {
-        "type": "select",
-        "options": [
-          "relative",
-          "sticky",
-          "floating"
-        ],
-        "default": "relative"
-      },
-      "newsletter_overlay": {
-        "type": "boolean",
-        "default": false
-      },
-      "use_portal_links": {
-        "type": "boolean",
-        "default": false
-      },
-      "hero_type": {
-        "type": "select",
-        "options": [
-          "cta",
-          "featured-slider"
-        ],
-        "default": "cta",
-        "group": "homepage"
-      },
-      "hero_headline": {
-        "type": "text",
-        "group": "homepage"
-      },
-      "hero_description": {
-        "type": "text",
-        "group": "homepage"
-      },
-      "hero_form": {
-        "type": "boolean",
-        "default": true,
-        "group": "homepage"
-      },
-      "hero_form_footnote": {
-        "type": "text",
-        "group": "homepage"
-      },
-      "post_feed_style": {
-        "type": "select",
-        "options": [
-          "list",
-          "grid"
-        ],
-        "default": "list",
-        "group": "homepage"
-      },
-      "post_feed_sidebar": {
-        "type": "boolean",
-        "default": true,
-        "group": "homepage"
-      },
-      "enable_image_lightbox": {
-        "type": "boolean",
-        "default": true,
-        "group": "post"
-      },
-      "open_external_links_in_new_tab": {
-        "type": "boolean",
-        "default": false,
-        "group": "post"
-      }
+    "name": "casper-new",
+    "description": "A clean, minimal default theme for the Ghost publishing platform",
+    "demo": "https://demo.ghost.io",
+    "version": "5.5.1",
+    "engines": {
+        "ghost": ">=5.0.0"
     },
-    "card_assets": true,
-    "posts_per_page": 12,
-    "image_sizes": {
-      "xxs": {
-        "width": 30
-      },
-      "xs": {
-        "width": 100
-      },
-      "s": {
-        "width": 300
-      },
-      "m": {
-        "width": 600
-      },
-      "l": {
-        "width": 1000
-      },
-      "xl": {
-        "width": 2000
-      }
+    "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
+    "scripts": {
+        "dev": "gulp",
+        "zip": "gulp zip",
+        "test": "gscan .",
+        "test:ci": "gscan --fatal --verbose .",
+        "pretest": "gulp build",
+        "preship": "yarn test",
+        "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; else echo \"Uncomitted changes found.\" && exit 1; fi",
+        "postship": "git fetch && gulp release"
+    },
+    "author": {
+        "name": "Ghost Foundation",
+        "email": "hello@ghost.org",
+        "url": "https://ghost.org/"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Minimal",
+            "Magazine"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/TryGhost/Casper.git"
+    },
+    "bugs": "https://github.com/TryGhost/Casper/issues",
+    "contributors": "https://github.com/TryGhost/Casper/graphs/contributors",
+    "devDependencies": {
+        "@tryghost/release-utils": "0.8.1",
+        "autoprefixer": "10.4.7",
+        "beeper": "2.1.0",
+        "cssnano": "5.1.12",
+        "gscan": "4.36.1",
+        "gulp": "4.0.2",
+        "gulp-concat": "2.6.1",
+        "gulp-livereload": "4.0.2",
+        "gulp-postcss": "9.0.1",
+        "gulp-uglify": "3.0.2",
+        "gulp-zip": "5.1.0",
+        "inquirer": "8.2.4",
+        "postcss": "8.2.13",
+        "postcss-color-mod-function": "3.0.3",
+        "postcss-easy-import": "4.0.0",
+        "pump": "3.0.0"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "config": {
+        "posts_per_page": 25,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1000
+            },
+            "xl": {
+                "width": 2000
+            }
+        },
+        "card_assets": true,
+        "custom": {
+            "navigation_layout": {
+                "type": "select",
+                "options": [
+                    "Logo on cover",
+                    "Logo in the middle",
+                    "Stacked"
+                ],
+                "default": "Logo on cover"
+            },
+            "title_font": {
+                "type": "select",
+                "options": [
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
+                "default": "Modern sans-serif"
+            },
+            "body_font": {
+                "type": "select",
+                "options": [
+                    "Modern sans-serif",
+                    "Elegant serif"
+                ],
+                "default": "Elegant serif"
+            },
+            "show_publication_cover": {
+                "type": "boolean",
+                "default": true,
+                "group": "homepage"
+            },
+            "header_style": {
+                "type": "select",
+                "options": [
+                    "Center aligned",
+                    "Left aligned",
+                    "Hidden"
+                ],
+                "default": "Center aligned",
+                "group": "homepage"
+            },
+            "feed_layout": {
+                "type": "select",
+                "options": [
+                    "Classic",
+                    "Grid",
+                    "List"
+                ],
+                "default": "Classic",
+                "group": "homepage"
+            },
+            "color_scheme": {
+                "type": "select",
+                "options": [
+                    "Light",
+                    "Dark",
+                    "Auto"
+                ],
+                "default": "Light"
+            },
+            "post_image_style": {
+                "type": "select",
+                "options": [
+                    "Wide",
+                    "Full",
+                    "Small",
+                    "Hidden"
+                ],
+                "default": "Wide",
+                "group": "post"
+            },
+            "email_signup_text": {
+                "type": "text",
+                "default": "Sign up for more like this.",
+                "group": "post"
+            },
+            "show_recent_posts_footer": {
+                "type": "boolean",
+                "default": true,
+                "group": "post"
+            }
+        }
+    },
+    "renovate": {
+        "extends": [
+            "@tryghost:theme"
+        ]
     }
-  }
 }

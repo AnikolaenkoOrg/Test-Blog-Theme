@@ -1,105 +1,76 @@
 {{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
 
-{{!-- Author Hero --}}
-{{#author}}
-  <div class="hero has-img-bg flex flex-col flex-cc bg-gradient">
-    <div class="hero__content author-card">
-      {{#if profile_image}}
-        <figure class="author-card__media m-0 flex flex-cc">
-          <img class="lazyload author-card__img is-round z-index-1" 
-            data-srcset="{{img_url profile_image size="xs"}} 100w,
-                {{img_url profile_image size="s"}} 300w"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            data-sizes="auto"
-            data-src="{{img_url profile_image size="xs"}}"
-            src="{{img_url profile_image size="xxs"}}"
-            alt="{{name}}"
-          />
-        </figure>
-      {{/if}}
-      
-      <h1 class="hero__title{{#if profile_image}} m-t-xs{{/if}}">{{name}}</h1>
+<main id="site-main" class="site-main outer">
+<div class="inner posts">
 
-      {{#if bio}}<div class="hero__descr text-acc-3 m-b">{{bio}}</div>{{/if}}
+    <div class="post-feed">
 
-      <div class="hero__details flex flex-cc color-light">
-        {{!-- Number of posts --}}
-        <span class="text-sm">{{#plural ../pagination.total empty=(t 'No posts') singular=(t '1 post') plural=(t '% posts')}}{{/plural}}</span>
+        {{#author}}
+        <section class="post-card post-card-large">
 
-        <span class="m-l-sm m-r-sm separator-dot">•</span>
+            {{#if cover_image}}
+            <div class="post-card-image-link">
+                {{!-- This is a responsive image, it loads different sizes depending on device
+                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+                <img class="post-card-image"
+                    srcset="{{img_url cover_image size="s"}} 300w,
+                            {{img_url cover_image size="m"}} 600w,
+                            {{img_url cover_image size="l"}} 1000w,
+                            {{img_url cover_image size="xl"}} 2000w"
+                    sizes="(max-width: 1000px) 400px, 800px"
+                    src="{{img_url cover_image size="m"}}"
+                    alt="{{title}}"
+                />
+            </div>
+            {{/if}}
 
-        {{!-- Author social links --}}
-        <div class="author-card__social flex self-align-center">
-          {{!-- Twitter --}}
-          {{#if twitter}}
-            <a href="{{twitter_url}}" class=""
-              title="Twitter" aria-label="Twitter"
-              target="_blank" rel="noopener noreferrer"
-            >
-              {{> icon name="twitter" size="xs"}}
-            </a>
-          {{/if}}
-          {{!-- Facebook --}}
-          {{#if facebook}}
-            <a href="{{facebook_url}}" class=""
-              title="Facebook" aria-label="Facebook"
-              target="_blank" rel="noopener noreferrer"
-            >
-              {{> icon name="facebook" size="xs"}}
-            </a>
-          {{/if}}
-          {{!-- Author website --}}
-          {{#if website}}
-            <a href="{{website}}" class=""
-              title="Website" aria-label="Website"
-              target="_blank" rel="noopener noreferrer"
-            >
-              {{> icon name="link" size="xs"}}
-            </a>
-          {{/if}}
-        </div>
-      </div>
-    </div>
+            <div class="post-card-content">
+            <div class="post-card-content-link">
 
-    {{#if cover_image}}
-      <div class="hero__media is-bg">
-        <img class="hero__img lazyload" 
-            data-srcset="{{img_url cover_image size="xs"}} 100w,
-                    {{img_url cover_image size="s"}} 300w,
-                    {{img_url cover_image size="m"}} 600w,
-                    {{img_url cover_image size="l"}} 1000w"
-            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-            data-sizes="auto"
-            data-src="{{img_url cover_image size="m"}}"
-            src="{{img_url cover_image size="xxs"}}"
-            alt="{{name}}"/>
-      </div>
-    {{/if}}
-  </div>
-{{/author}}
+                {{#if profile_image}}
+                    <img class="author-profile-pic" src="{{profile_image}}" alt="{{name}}" />
+                {{/if}}
 
+                <header class="post-card-header">
+                    <h2 class="post-card-title">{{name}}</h2>
+                </header>
 
-{{!-- The main content --}}
-{{#if posts}}
-  {{!-- Posts --}}
-  <div class="row">
-    <div class="col-xs-12 col-lg-8 col-lg-offset-2">
-      <div class="grid post-feed js-post-feed">
+                {{#if bio}}
+                    <div class="post-card-excerpt">{{bio}}</div>
+                {{/if}}
+
+                <footer class="author-profile-footer">
+                    {{#if location}}
+                        <div class="author-profile-location">{{location}}</div>
+                    {{/if}}
+                    <div class="author-profile-meta">
+                        {{#if website}}
+                            <a class="author-profile-social-link" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
+                        {{/if}}
+                        {{#if twitter}}
+                            <a class="author-profile-social-link" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
+                        {{/if}}
+                        {{#if facebook}}
+                            <a class="author-profile-social-link" href="{{facebook_url}}" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
+                        {{/if}}
+                    </div>
+                </footer>
+
+            </div>
+            </div>
+
+        </section>
+        {{/author}}
+
         {{#foreach posts}}
-          {{> post-card 
-            show_img=true 
-            show_access=true
-            show_excerpt=true
-          }}
+            {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+            {{> "post-card"}}
         {{/foreach}}
-      </div>
-    </div>
-  </div>
 
-  {{!-- Load more posts --}}
-  <div class="col-xs-12 center-xs m-t-lg m-b-lg">
-    <button class="btn btn--wide btn--shadow btn--filled js-load-more">
-      {{t "Load more posts"}}
-    </button>
-  </div>
-{{/if}}
+    </div>
+
+    {{pagination}}
+    
+</div>
+</main>
